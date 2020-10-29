@@ -4,9 +4,8 @@ Made by Adrián Fenollar Navarro, 3rd year computer engineering student
 at the University of Murcia; October 26, 2020.
 
 ## Introduction
-This project consists of a simple ordering algorithm viewer, 
-with which it is intended that it can be a tool that facilitates 
-the study and learning of these.
+This project consists of an sorting algorithm viewer that aims to be
+a tool that can facilitate the study and learning of these algorithms.
 
 That's the first beta version of the application, with only two sort algorithms implemented.
 
