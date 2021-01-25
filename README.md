@@ -62,10 +62,11 @@ and `algorithms` can be (non case sensitive)
 
 - `Selection`
 - `Bubble`
+- `Heap`
 
 At the moment only one algorithm can be included per run.
 
 ## Updates
 
-(still empty)
+- [25/01/2021] Included Heap Sort Algorithm
 
