@@ -13,6 +13,9 @@ using namespace sf;
 #define DEFAULT_WINDOW_WIDTH 600
 #define DEFAULT_WINDOW_HEIGHT 600
 
+// Window default FPS
+#define DEFAULT_WINDOW_FPS 60
+
 // Color palette
 #define NONE_COLOR Color::White
 #define SELECTED_COLOR Color::Blue

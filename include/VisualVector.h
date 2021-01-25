@@ -6,7 +6,7 @@
 
 using namespace std;
 
-#define DEFAULT_ARRAY_SIZE 100
+#define DEFAULT_ARRAY_SIZE 250
 
 enum BoxStatus {
     NONE = 0, SELECTED = 1, CHANGED = 2

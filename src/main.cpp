@@ -25,7 +25,7 @@ int main(int argc, char *argv[]) {
     // Modifiable parameters
     vector<void (*)(class VisualWindow&)> algorithms;
     int arraySize = DEFAULT_ARRAY_SIZE;
-    int framerate = 0;
+    int framerate = DEFAULT_WINDOW_FPS;
     int windowWidth = DEFAULT_WINDOW_WIDTH;
     int windowHeight = DEFAULT_WINDOW_HEIGHT;
     bool random = false;
@@ -35,7 +35,7 @@ int main(int argc, char *argv[]) {
         struct option long_options[] = {
                 {"size",      required_argument, nullptr, 'n'},
                 {"framerate", required_argument, nullptr, 'f'},
-                {"random",    optional_argument, nullptr, 'r'},
+                {"random",    no_argument, nullptr, 'r'},
                 {"help",      no_argument,       nullptr, 'h'},
                 {nullptr, 0, nullptr, 0}
         };
