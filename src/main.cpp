@@ -28,24 +28,29 @@ int main(int argc, char *argv[]) {
     int framerate = 0;
     int windowWidth = DEFAULT_WINDOW_WIDTH;
     int windowHeight = DEFAULT_WINDOW_HEIGHT;
+    bool random = false;
 
     /*** Argument handler ***/
     {
         struct option long_options[] = {
                 {"size",      required_argument, nullptr, 'n'},
                 {"framerate", required_argument, nullptr, 'f'},
+                {"random",    optional_argument, nullptr, 'r'},
                 {"help",      no_argument,       nullptr, 'h'},
                 {nullptr, 0, nullptr, 0}
         };
 
         char c;
-        while ((c = getopt_long(argc, argv, "n:f:W:H:h", long_options, nullptr)) != -1) {
+        while ((c = getopt_long(argc, argv, "n:f:W:H:rh", long_options, nullptr)) != -1) {
             switch (c) {
                 case 'n':
                     arraySize = atoi(optarg);
                     break;
                 case 'f':
                     framerate = atoi(optarg);
+                    break;
+                case 'r':
+                    random = true;
                     break;
                 case 'h':
                 default:
@@ -79,7 +84,11 @@ int main(int argc, char *argv[]) {
 
     // Creating and initializing vector
     auto *vector = new VisualVector(arraySize);
-    vector->fillWithRandom();
+    if (random)
+        vector->fillWithRandom();
+    else
+        vector->fillWithUniform();
+
     // Creating and initializing window
     auto *window = new VisualWindow(vector, string(argv[optind]), framerate, windowWidth, windowHeight, "Sort Algorithm Viewer");
 

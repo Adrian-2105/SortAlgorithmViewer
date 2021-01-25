@@ -72,8 +72,13 @@ void VisualVector::initialize() {
     }
 }
 
+void VisualVector::fillWithUniform() {
+    REP(i, length)
+        array[i] = (i * MAX_NUM_RAND) / length;
+    sort(&array[0], &array[length], [](int a, int b){return ((double) rand() / (RAND_MAX)) > 0.5;});
+}
+
 void VisualVector::fillWithRandom() {
-    srand(0);
     REP(i, length)
         array[i] = rand() % MAX_NUM_RAND;
 }

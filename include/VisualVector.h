@@ -45,6 +45,7 @@ public:
 
     // Main methods
     void initialize();
+    void fillWithUniform();
     void fillWithRandom();
     void addComparisons(int q);
     void addArrayAccesses(int q);
