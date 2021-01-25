@@ -2,6 +2,12 @@
 #include <getopt.h>
 #include <iostream>
 
+#ifdef _WIN32
+#include <Windows.h>
+#else
+#include <unistd.h>
+#endif
+
 #include "../include/SortAlgorithms.h"
 
 using namespace std;
@@ -40,14 +46,14 @@ int main(int argc, char *argv[]) {
                 {nullptr, 0, nullptr, 0}
         };
 
-        char c;
+        int c;
         while ((c = getopt_long(argc, argv, "n:f:W:H:rh", long_options, nullptr)) != -1) {
             switch (c) {
                 case 'n':
-                    arraySize = atoi(optarg);
+                    arraySize = stoi(optarg);
                     break;
                 case 'f':
-                    framerate = atoi(optarg);
+                    framerate = stoi(optarg);
                     break;
                 case 'r':
                     random = true;
@@ -113,13 +119,16 @@ int main(int argc, char *argv[]) {
                         nextRun = true;
                 }
 
-                window->display();
+                usleep(1000);
             }
         }
 
         // Reinitialize the array
         vector->initialize();
-        vector->fillWithRandom();
+        if (random)
+            vector->fillWithRandom();
+        else
+            vector->fillWithUniform();
     }
 
     delete window;
