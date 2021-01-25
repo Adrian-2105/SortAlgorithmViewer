@@ -56,6 +56,7 @@ where the `OPTIONS` are
 
 - `-n, --size <array_size>`: specifies the size of the array
 - `-f, --framerate <framerate>`: specify the number of frames per second
+- `-r, --random:`: initialize the array with random values
 - `-h, --help`: show help menu
 
 and `algorithms` can be (non case sensitive)
@@ -65,6 +66,14 @@ and `algorithms` can be (non case sensitive)
 - `Heap`
 
 At the moment only one algorithm can be included per run.
+
+### Examples of use
+
+- Selection Sort with an array of length 200, 30 FPS and uniform initialization: `./SortAlgorithmViewer -n 200 -f 30 Selection`
+- Heap Sort with an array of length 500, 60 FPS and random initialization: `./SortAlgorithmViewer -n 500 -f 60 -r Heap`
+
+
+
 
 ## Updates
 
