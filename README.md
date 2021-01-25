@@ -3,11 +3,19 @@
 Made by Adrián Fenollar Navarro, 3rd year computer engineering student
 at the University of Murcia; October 26, 2020.
 
+------
+
 ## Introduction
 This project consists of an sorting algorithm viewer that aims to be
 a tool that can facilitate the study and learning of these algorithms.
 
 That's the first beta version of the application, with only two sort algorithms implemented.
+
+## Executuion example
+
+![Alt text](Examples/SortAlgorithmViewer-v0.1_Selection&BubbleSort_example.gif)
+
+-------
 
 ## Requirements
 
@@ -43,6 +51,8 @@ cmake CMakeLists.txt
 make
 ```
 
+-------
+
 ## How to use it
 
 A more detailed user manual will be included in later versions. At the moment, the
@@ -76,6 +86,7 @@ At the moment only one algorithm can be included per run.
 
 `./SortAlgorithmViewer -n 500 -f 60 -r Heap`
 
+------
 
 ## Updates
 
