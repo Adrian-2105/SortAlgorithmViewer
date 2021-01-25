@@ -54,8 +54,8 @@ program runs as follows:
 
 where the `OPTIONS` are
 
-- `-n, --size <array_size>`: specifies the size of the array
-- `-f, --framerate <framerate>`: specify the number of frames per second
+- `-n, --size <array_size>`: specifies the size of the array. The default is 250
+- `-f, --framerate <framerate>`: specify the number of frames per second. The default is 60
 - `-r, --random:`: initialize the array with random values
 - `-h, --help`: show help menu
 
@@ -77,5 +77,5 @@ At the moment only one algorithm can be included per run.
 
 ## Updates
 
-- [25/01/2021] Included Heap Sort Algorithm
+- [25/01/2021] Included Heap Sort Algorithm and uniform initialization
 
