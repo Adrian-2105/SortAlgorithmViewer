@@ -10,12 +10,15 @@
 #define ASSETS_FONT "./resources/fonts/"
 #define JACK_FONT "jack.ttf"
 
-// Constructor
+// Constructors
+
 VisualWindow::VisualWindow(VisualVector *v, string _algorithm, int framerate, int w, int h, const string &name)
         : RenderWindow(VideoMode(w, h), name) {
     vector = v;
     algorithm = move(_algorithm);
-    setFramerateLimit(framerate);
+    // If a default framerate is not specified there will be no limit
+    if (framerate > 0)
+        setFramerateLimit(framerate);
     width = w;
     height = h;
     if (!font.loadFromFile(ASSETS_FONT JACK_FONT))

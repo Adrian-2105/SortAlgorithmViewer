@@ -1,12 +1,5 @@
 #include "../include/SortAlgorithms.h"
 
-// Implies 4 memory accesses
-void swap(int &a, int &b) {
-    int aux = a;
-    a = b;
-    b = aux;
-}
-
 // O(N^2)
 void selection_sort(class VisualWindow &window) {
 
@@ -94,4 +87,76 @@ void bubble_sort(class VisualWindow &window) {
         // Draw the current frame
         window.drawAndDisplay();
     }
+}
+
+// To heapify a subtree rooted with node i which is
+// an index in arr[]. n is size of heap
+void heapify(class VisualWindow &window, VisualVector *vector, int n, int i) {
+    Event e{};
+    while (window.pollEvent(e)) {
+        // Window closed
+        if (e.type == Event::Closed) {
+            window.close();
+            exit(0);
+        }
+    }
+
+    int largest = i; // Initialize largest as root
+    int l = 2 * i + 1; // left = 2*i + 1
+    int r = 2 * i + 2; // right = 2*i + 2
+
+    // If left child is larger than root
+    if (l < n && (*vector)[l] > (*vector)[largest])
+        largest = l;
+        vector->addComparisons(1);
+
+    // If right child is larger than largest so far
+    if (r < n && (*vector)[r] > (*vector)[largest])
+        largest = r;
+
+    vector->addComparisons(2);
+    vector->addArrayAccesses(2);
+
+    // If largest is not root
+    if (largest != i) {
+        vector->setStatus(i, SELECTED);
+        vector->setStatus(largest, CHANGED);
+
+        swap((*vector)[i], (*vector)[largest]);
+        vector->addArrayAccesses(4);
+        vector->addSwaps(1);
+
+        // Recursively heapify the affected sub-tree
+        heapify(window, vector, n, largest);
+    }
+
+}
+
+// main function to do heap sort
+void heap_sort(class VisualWindow &window) {
+    VisualVector *vector = window.getVisualVector();
+
+    int n = vector->getLength();
+    // Build heap (rearrange array)
+    for (int i = n / 2 - 1; i >= 0; i--) {
+        heapify(window, vector, n, i);
+
+        window.drawAndDisplay();
+    }
+
+    // One by one extract an element from heap
+    for (int i = n - 1; i > 0; i--) {
+        // Move current root to end
+        vector->setStatus(0, SELECTED);
+        vector->setStatus(i, CHANGED);
+
+        swap((*vector)[0], (*vector)[i]);
+        vector->addArrayAccesses(4);
+        vector->addSwaps(1);
+
+        // call max heapify on the reduced heap
+        heapify(window, vector, i, 0);
+        window.drawAndDisplay();
+    }
+
 }

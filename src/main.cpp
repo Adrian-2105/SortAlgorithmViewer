@@ -25,7 +25,7 @@ int main(int argc, char *argv[]) {
     // Modifiable parameters
     vector<void (*)(class VisualWindow&)> algorithms;
     int arraySize = DEFAULT_ARRAY_SIZE;
-    int framerate = sqrt(arraySize) * 4;
+    int framerate = 0;
     int windowWidth = DEFAULT_WINDOW_WIDTH;
     int windowHeight = DEFAULT_WINDOW_HEIGHT;
 
@@ -85,21 +85,28 @@ int main(int argc, char *argv[]) {
 
     // Infinite iterate loop as long as the window does not close
     Event event{};
-    bool exit = false;
     while (window->isOpen()) {
-        // Event handling
-        while (window->pollEvent(event)) {
-            // Window closed
-            if (event.type == Event::Closed) {
-                window->close();
-                exit = true;
-            }
-        }
-        if (exit)
-            break;
-
         // Apply the visual sort algorithm
         algorithms[0](*window);
+
+        // Event handling
+        bool nextRun = false;
+        while (!nextRun && window->isOpen()) {
+            while (window->pollEvent(event)) {
+                // Window closed
+                if (event.type == Event::Closed) {
+                    window->close();
+                    exit(EXIT_SUCCESS);
+                }
+                // Wait for ENTER to be pressed to rerun
+                else if (event.type == Event::KeyPressed) {
+                    if (event.key.code == Keyboard::Enter)
+                        nextRun = true;
+                }
+
+                window->display();
+            }
+        }
 
         // Reinitialize the array
         vector->initialize();
